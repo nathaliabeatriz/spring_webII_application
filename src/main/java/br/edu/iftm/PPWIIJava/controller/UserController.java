@@ -12,7 +12,6 @@ import br.edu.iftm.PPWIIJava.model.User;
 import br.edu.iftm.PPWIIJava.service.UserService;
 
 
- 
 @Controller
 public class UserController {
     @Autowired

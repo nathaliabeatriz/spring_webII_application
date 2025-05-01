@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listar Plantas</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    
+  <div class="container">
+    <h3>Listagem de Plantas</h3>
+    <a th:href="@{/plant/create}">Cadastrar Planta</a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome Personalizado</th>
+          <th scope="col">Espécie</th>
+          <th scope="col">Data de Aquisição</th>
+          <th scope="col">Usuário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="plant : ${plantsList}">
+          <td scope="row" th:text="${plant.Id}"></td>
+          <td scope="row" th:text="${plant.nome}"></td>
+          <td scope="row" th:text="${plant.especie}"></td>
+          <td scope="row" th:text="${plant.dataAquisicao}"></td>
+          <td scope="row" th:text="${plant.usuario.nome}"></td>
+          <td>
+            <a th:href="@{/plant/edit/{id}(id=${plant.id})}">Editar</a>
+          </td>
+          <td>
+            <a th:href="@{/plant/delete/{id}(id=${plant.id})}">Deletar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

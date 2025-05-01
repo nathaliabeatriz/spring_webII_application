@@ -12,7 +12,7 @@ import lombok.Data;
 //@Entity - indica que é uma classe do tipo JPA (que é mapeada para uma tabela do banco)
 @Entity
 @Data
-@Table(name="user")
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
