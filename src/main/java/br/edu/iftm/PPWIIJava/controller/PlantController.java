@@ -3,6 +3,7 @@ package br.edu.iftm.PPWIIJava.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import br.edu.iftm.PPWIIJava.model.Plant;
 import br.edu.iftm.PPWIIJava.service.PlantService;
 import br.edu.iftm.PPWIIJava.service.UserService;
+import jakarta.validation.Valid;
 
 @Controller
 public class PlantController {
@@ -36,7 +38,11 @@ public class PlantController {
     }
 
     @PostMapping("/plant/save")
-    public String postMethodName(@ModelAttribute("plant") Plant plant) {
+    public String postMethodName(@ModelAttribute @Valid Plant plant, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("usersList", userService.getAllUsers());
+            return "plant/create";
+        }
         plantService.savePlant(plant);
         return "redirect:/plant";
     }
