@@ -1,4 +1,4 @@
-package br.edu.iftm.PPWIIJava.service;
+package br.edu.iftm.PPWIIJava.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.iftm.PPWIIJava.model.Plant;
 import br.edu.iftm.PPWIIJava.repository.PlantRepository;
+import br.edu.iftm.PPWIIJava.service.PlantService;
 
 @Service
 public class PlantServiceImpl implements PlantService{

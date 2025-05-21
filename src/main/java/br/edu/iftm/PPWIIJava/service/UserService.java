@@ -5,8 +5,6 @@ import java.util.List;
 import br.edu.iftm.PPWIIJava.model.User;
 
 public interface UserService {
+    public Integer saveUser(User user);
     List<User> getAllUsers();
-    void saveUser(User user);
-    User getUserById(long id);
-    void deleteUserById(long id);
 }

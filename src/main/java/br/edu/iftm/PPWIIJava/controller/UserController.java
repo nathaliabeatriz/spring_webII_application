@@ -5,54 +5,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.iftm.PPWIIJava.model.User;
 import br.edu.iftm.PPWIIJava.service.UserService;
 
-
 @Controller
 public class UserController {
+
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user")
-    public String index(Model model) {
-        model.addAttribute("usersList", userService.getAllUsers());
-        return "user/index";
-    }
-    
-
-    @GetMapping("/")
-    public String viewHomePage(Model model) {
-        model.addAttribute("listUsers", userService.getAllUsers());
-        return "index";
+    // Go to Registration Page
+    @GetMapping("/register")
+    public String register() {
+        return "user/registerUser";
     }
 
-    @GetMapping("/showNewUserForm")
-    public String showNewUserForm(Model model){
-        User user = new User();
-        model.addAttribute("user", user);
-        return "new_user";
-    }
-
+    // Read Form data to save into DB
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user){
-        userService.saveUser(user);
-        return "redirect:/";
+    public String saveUser(
+            @ModelAttribute User user,
+            Model model) {
+        Integer id = userService.saveUser(user);
+        String message = "User '" + id + "' saved successfully !";
+        model.addAttribute("msg", message);
+        return "user/registerUser";
     }
 
-    @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        return "update_user";
-    }
-    
-    @GetMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable(value = "id") long id, Model model) {
-        userService.deleteUserById(id);
-        return "redirect:/";
-    }
+    @GetMapping("/accessDenied")
+	public String getAccessDeniedPage() {
+		return "user/accessDeniedPage";
+	}
 }

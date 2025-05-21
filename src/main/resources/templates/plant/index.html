@@ -24,7 +24,7 @@
           <td scope="row" th:text="${plant.nome}"></td>
           <td scope="row" th:text="${plant.especie}"></td>
           <td scope="row" th:text="${plant.dataAquisicao}"></td>
-          <td scope="row" th:text="${plant.usuario.nome}"></td>
+          <td scope="row" th:text="${plant.usuario.name}"></td>
           <td>
             <a th:href="@{/plant/edit/{id}(id=${plant.id})}">Editar</a>
           </td>

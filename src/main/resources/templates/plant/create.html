@@ -38,7 +38,7 @@
                 <div class="col-sm-10">
                     <select class="form-control" th:field="*{usuario}">
                         <option value="" disabled selected>Selecionar Usuário</option>
-                        <option th:each="u : ${usersList}" th:value="${u.id}" th:text="${u.nome}">
+                        <option th:each="u : ${usersList}" th:value="${u.id}" th:text="${u.name}">
                         </option>
                     </select>
                 </div>
