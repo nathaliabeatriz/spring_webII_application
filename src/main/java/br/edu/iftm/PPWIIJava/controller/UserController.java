@@ -11,8 +11,7 @@ import br.edu.iftm.PPWIIJava.model.User;
 import br.edu.iftm.PPWIIJava.service.UserService;
 
 @Controller
-public class UserController {
-
+public class UserController { 
     @Autowired
     private UserService userService;
 
@@ -35,6 +34,6 @@ public class UserController {
 
     @GetMapping("/accessDenied")
 	public String getAccessDeniedPage() {
-		return "user/accessDeniedPage";
+		return "user/accessDenied";
 	}
 }

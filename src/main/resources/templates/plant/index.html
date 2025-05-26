@@ -7,7 +7,7 @@
   <th:block th:replace="~{/../fragments/head :: header}"></th:block>
   <div class="container">
     <h3>Listagem de Plantas</h3>
-    <a th:href="@{/plant/create}">Cadastrar Planta</a>
+    <a sec:authorize="hasAuthority('Admin')" th:href="@{/plant/create}">Cadastrar Planta</a>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -25,10 +25,10 @@
           <td scope="row" th:text="${plant.especie}"></td>
           <td scope="row" th:text="${plant.dataAquisicao}"></td>
           <td scope="row" th:text="${plant.usuario.name}"></td>
-          <td>
+          <td sec:authorize="hasAuthority('Admin')">
             <a th:href="@{/plant/edit/{id}(id=${plant.id})}">Editar</a>
           </td>
-          <td>
+          <td sec:authorize="hasAuthority('Admin')">
             <a th:href="@{/plant/delete/{id}(id=${plant.id})}">Deletar</a>
           </td>
         </tr>
